@@ -105,13 +105,77 @@ Route::group(
 
     Route::post('/', 'CitiesController@store')
          ->name('cities.city.store');
-               
+
     Route::put('city/{city}', 'CitiesController@update')
          ->name('cities.city.update')
          ->where('id', '[0-9]+');
 
     Route::delete('/city/{city}','CitiesController@destroy')
          ->name('cities.city.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'deltypes',
+], function () {
+
+    Route::get('/', 'DeltypesController@index')
+         ->name('deltypes.deltype.index');
+
+    Route::get('/create','DeltypesController@create')
+         ->name('deltypes.deltype.create');
+
+    Route::get('/show/{deltype}','DeltypesController@show')
+         ->name('deltypes.deltype.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{deltype}/edit','DeltypesController@edit')
+         ->name('deltypes.deltype.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'DeltypesController@store')
+         ->name('deltypes.deltype.store');
+
+    Route::put('deltype/{deltype}', 'DeltypesController@update')
+         ->name('deltypes.deltype.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/deltype/{deltype}','DeltypesController@destroy')
+         ->name('deltypes.deltype.destroy')
+         ->where('id', '[0-9]+');
+
+});
+
+Route::group(
+[
+    'prefix' => 'offres',
+], function () {
+
+    Route::get('/', 'OffresController@index')
+         ->name('offres.offre.index');
+
+    Route::get('/create','OffresController@create')
+         ->name('offres.offre.create');
+
+    Route::get('/show/{offre}','OffresController@show')
+         ->name('offres.offre.show')
+         ->where('id', '[0-9]+');
+
+    Route::get('/{offre}/edit','OffresController@edit')
+         ->name('offres.offre.edit')
+         ->where('id', '[0-9]+');
+
+    Route::post('/', 'OffresController@store')
+         ->name('offres.offre.store');
+
+    Route::put('offre/{offre}', 'OffresController@update')
+         ->name('offres.offre.update')
+         ->where('id', '[0-9]+');
+
+    Route::delete('/offre/{offre}','OffresController@destroy')
+         ->name('offres.offre.destroy')
          ->where('id', '[0-9]+');
 
 });
