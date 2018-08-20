@@ -21,42 +21,24 @@ class UserController extends Controller
 
     public function update(User $user)
     {
-        if(Auth::user()->email == request('email')) {
 
             $this->validate(request(), [
                     'name' => 'required',
-                  //  'email' => 'required|email|unique:users',
+                    //'email' => 'required|email|unique:users',
                     'password' => 'required|min:6|confirmed'
                 ]);
 
                 $user->name = request('name');
-               // $user->email = request('email');
+                //$user->email = request('email');
                 $user->password = bcrypt(request('password'));
+                $user->phone = request('phone');
 
                 $user->save();
+                //return redirect()->route('users.user.edit')
+                //->with('success_message', 'Profile was successfully updated!');
 
 
-                return redirect()->route('users.user.edit')
-                ->with('success_message', 'Profile was successfully updated!');
-
-            }
-            else {
-
-            $this->validate(request(), [
-                    'name' => 'required',
-                    'email' => 'required|email|unique:users',
-                    'password' => 'required|min:6|confirmed'
-                ]);
-
-                $user->name = request('name');
-                $user->email = request('email');
-                $user->password = bcrypt(request('password'));
-
-                $user->save();
-
-                return back();
+                return back()->with('success_message', 'Profile was successfully updated!');;
 
             }
-
-        }
     }

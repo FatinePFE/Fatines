@@ -25,6 +25,19 @@
                 </ul>
             @endif
 
+            @if(Session::has('success_message'))
+                <div class="alert alert-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {!! session('success_message') !!}
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+            @endif
+
+
 
             <form method="POST" action="{{route('users.update', $user)}}">
                 {{ csrf_field() }}
@@ -41,10 +54,19 @@
                 <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                     <label for="email" class="col-md-2 control-label">Email</label>
                     <div class="col-md-10">
-                        <input class="form-control" name="email" type="text" id="email" value="{{ old('email', optional($user)->email) }}" minlength="1" maxlength="255" placeholder="Enter email here...">
+                        <input class="form-control" name="email" type="text" id="email" value="{{ old('email', optional($user)->email) }}" minlength="1" maxlength="255" placeholder="Enter email here..." disabled>
                         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+
+                <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
+                    <label for="phone" class="col-md-2 control-label">Phone</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="phone" type="text" id="phone" value="{{ old('phone', optional($user)->phone) }}" minlength="1" maxlength="255" placeholder="Enter phone here...">
+                        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
 
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                     <label for="password" class="col-md-2 control-label">Password</label>
@@ -54,6 +76,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                     <label for="password" class="col-md-2 control-label">Password Confirmation</label>
                     <div class="col-md-10">
@@ -61,6 +85,9 @@
                         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
+
+
+
 
 
                 <div class="form-group">
