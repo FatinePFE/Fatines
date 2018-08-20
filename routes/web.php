@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/profile', 'UserController@edit')->name('users.user.edit');
+Route::patch('/users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+
+
 Route::group(
 [
     'prefix' => 'categories',

@@ -26,10 +26,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
-
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -63,7 +61,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('home') }}">{{ __('Home') }}</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">{{ __('Profile') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -82,20 +80,7 @@
             </div>
         </nav>
 
-
         <main class="container body-content">
-        <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.user.edit') }}">Edit Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('offres.offre.index') }}">My Offres</a>
-        </li>
-        </ul>
-
             @yield('content')
         </main>
     </div>
