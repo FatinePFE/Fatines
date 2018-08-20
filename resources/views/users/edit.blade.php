@@ -81,7 +81,7 @@
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                     <label for="password" class="col-md-2 control-label">Password Confirmation</label>
                     <div class="col-md-10">
-                        <input class="form-control" name="password_confirmation" type="password" id="password" value="{{ old('password', optional($user)->password) }}" minlength="1" maxlength="255" placeholder="Enter password here...">
+                        <input class="form-control" name="password_confirmation" type="password" id="password_confirmation" value="{{ old('password', optional($user)->password) }}" minlength="1" maxlength="255" placeholder="Enter password here...">
                         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>

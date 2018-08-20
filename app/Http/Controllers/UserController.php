@@ -30,15 +30,15 @@ class UserController extends Controller
 
                 $user->name = request('name');
                 //$user->email = request('email');
-                $user->password = bcrypt(request('password'));
+                $user->password = request('password');
                 $user->phone = request('phone');
 
                 $user->save();
-                //return redirect()->route('users.user.edit')
-                //->with('success_message', 'Profile was successfully updated!');
+                return redirect()->route('users.user.edit')
+                ->with('success_message', 'Profile was successfully updated!');
 
 
-                return back()->with('success_message', 'Profile was successfully updated!');;
+                //return back()->with('success_message', 'Profile was successfully updated!');;
 
             }
     }
