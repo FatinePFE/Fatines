@@ -89,7 +89,7 @@
             <a class="nav-link" href="{{ route('home') }}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.user.edit') }}">Edit Profile</a>
+            <a class="nav-link" href="{{ route('users.user.edit', Auth::user()->id ) }}">Edit Profile</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('offres.offre.index') }}">My Offres</a>

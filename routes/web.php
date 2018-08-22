@@ -19,8 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'UserController@edit')->name('users.user.edit');
-Route::patch('/users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+#Route::get('/profile', 'UserController@edit')->name('users.user.edit');
+#Route::patch('/users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
 
 
     Route::group(
@@ -190,3 +190,41 @@ Route::patch('/users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserCo
 
         });
 
+
+Route::group(
+[
+    'prefix' => 'users',
+], function () {
+
+    Route::get('/', 'UsersController@index')
+         ->name('users.user.index')
+         ->middleware('auth');
+
+    Route::get('/create','UsersController@create')
+         ->name('users.user.create')
+         ->middleware('auth');
+
+    Route::get('/show/{user}','UsersController@show')
+         ->name('users.user.show')
+         ->where('id', '[0-9]+')
+         ->middleware('auth');
+
+    Route::get('/{user}/edit','UsersController@edit')
+         ->name('users.user.edit')
+         ->where('id', '[0-9]+')
+         ->middleware('auth');
+
+    Route::post('/', 'UsersController@store')
+         ->name('users.user.store')
+         ->middleware('auth');
+
+    Route::put('user/{user}', 'UsersController@update')
+         ->name('users.user.update')
+         ->where('id', '[0-9]+')
+         ->middleware('auth');
+
+    Route::delete('/user/{user}','UsersController@destroy')
+         ->name('users.user.destroy')
+         ->where('id', '[0-9]+');
+
+});

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone'
+        'name', 'email', 'password', 'phone' , 'avatar' , 'city_id'
     ];
 
     /**
@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+       /**
+     * Get the city for this model.
+     */
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City','city_id');
+    }
+
 }

@@ -8,15 +8,15 @@
         "resource-file": "cities.json"
     },
     {
-        "model-name": "User",
-        "resource-file": "users.json"
-    },
-    {
         "model-name": "Deltype",
         "resource-file": "deltypes.json"
     },
     {
         "model-name": "offre",
         "resource-file": "offres.json"
+    },
+    {
+        "model-name": "User",
+        "resource-file": "users.json"
     }
 ]
