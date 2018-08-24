@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class UsersController extends Controller
@@ -90,6 +91,9 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $cities = City::pluck('name','id')->all();
+        if(Auth::user()->id != $id){
+            return ;
+        }
 
         return view('users.edit', compact('user','cities'));
     }

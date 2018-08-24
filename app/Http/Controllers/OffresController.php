@@ -9,6 +9,7 @@ use App\Models\Offre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class OffresController extends Controller
@@ -88,6 +89,15 @@ class OffresController extends Controller
      */
     public function show($id)
     {
+
+        $result = DB::table('offres')
+        ->where('user_id', Auth::user()->id)
+        ->where('id', $id)
+        ->first();
+        if($result == null){
+             return;
+        }
+
         $offre = Offre::with('city','shop','user')->findOrFail($id);
 
         return view('offres.show', compact('offre'));
@@ -102,10 +112,23 @@ class OffresController extends Controller
      */
     public function edit($id)
     {
+
+
+       $result = DB::table('offres')
+       ->where('user_id', Auth::user()->id)
+       ->where('id', $id)
+       ->first();
+       if($result == null){
+            return;
+       }
+
         $offre = Offre::findOrFail($id);
         $cities = City::pluck('name','id')->all();
         $shops = Shop::pluck('name','id')->all();
         $users = User::pluck('name','id')->all();
+
+
+
 
         return view('offres.edit', compact('offre','cities','cities','shops','users'));
     }
