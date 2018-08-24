@@ -5,7 +5,7 @@
     <div class="panel panel-default">
 
         <div class="panel-heading clearfix">
-            
+
             <span class="pull-left">
                 <h4 class="mt-5 mb-5">Create New User</h4>
             </span>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="panel-body">
-        
+
             @if ($errors->any())
                 <ul class="alert alert-danger">
                     @foreach ($errors->all() as $error)
@@ -33,6 +33,23 @@
             @include ('users.form', [
                                         'user' => null,
                                       ])
+
+            <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
+                <label for="role" class="col-md-2 control-label">Role</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="role" name="role">
+                            <option value="" style="display: none;">Select role</option>
+                        @foreach (['USER' => 'USER',
+                            'ADMIN' => 'ADMIN'] as $key => $text)
+                            <option value="{{ $key }}">
+                                {{ $text }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {!! $errors->first('role', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">

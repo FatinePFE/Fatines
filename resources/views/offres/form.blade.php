@@ -88,6 +88,7 @@
         -->
         <input class="form-control" name="user_id" type="hidden" id="user_id" value="{{ Auth::user()->id }}">
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+</div>
 
 <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
     <label for="status" class="col-md-2 control-label">Status</label>

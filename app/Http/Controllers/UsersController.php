@@ -31,7 +31,7 @@ class UsersController extends Controller
     public function create()
     {
         $cities = City::pluck('name','id')->all();
-        
+
         return view('users.create', compact('cities'));
     }
 
@@ -45,9 +45,14 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         try {
-            
+
             $data = $this->getData($request);
-            
+
+            if ($request->has('password')) {
+                 $data['password'] = bcrypt(request('password'));
+            }
+
+
             User::create($data);
 
             return redirect()->route('users.user.index')
@@ -100,10 +105,18 @@ class UsersController extends Controller
     public function update($id, Request $request)
     {
         try {
-            
+
             $data = $this->getData($request);
-            
+
             $user = User::findOrFail($id);
+
+            if ($request->has('password')) {
+
+                if (request('password') != $user->password) {
+                    $data['password'] = bcrypt(request('password'));
+                }
+            }
+
             $user->update($data);
 
             return redirect()->route('users.user.index')
@@ -113,7 +126,7 @@ class UsersController extends Controller
 
             return back()->withInput()
                          ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request!']);
-        }        
+        }
     }
 
     /**
@@ -139,11 +152,11 @@ class UsersController extends Controller
         }
     }
 
-    
+
     /**
      * Get the request's data from the request.
      *
-     * @param Illuminate\Http\Request\Request $request 
+     * @param Illuminate\Http\Request\Request $request
      * @return array
      */
     protected function getData(Request $request)
@@ -156,10 +169,10 @@ class UsersController extends Controller
             'avatar' => ['file','nullable'],
             'city_id' => 'nullable',
             'role' => 'nullable',
-     
+
         ];
 
-        
+
         $data = $request->validate($rules);
 
         if ($request->has('custom_delete_avatar')) {
@@ -169,11 +182,9 @@ class UsersController extends Controller
             $data['avatar'] = $this->moveFile($request->file('avatar'));
         }
 
-
-
         return $data;
     }
-  
+
     /**
      * Moves the attached file to the server.
      *
@@ -186,7 +197,7 @@ class UsersController extends Controller
         if (!$file->isValid()) {
             return '';
         }
-        
+
         return $file->store(config('codegenerator.files_upload_path'), config('filesystems.default'));
     }
 }
