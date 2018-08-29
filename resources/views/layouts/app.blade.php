@@ -58,15 +58,15 @@
 
                         <div class="flex-row justify-content-center ">
 
-                        <div class="profile-header-container">
-                            <div class="profile-header-img">
+                            <div class="profile-header-container">
+                                <div class="profile-header-img">
 
-                                @if( Auth::user()->avatar )
-                                 <img class="rounded-circle" width="50px" src="/storage/{{ Auth::user()->avatar }}" />
-                                @endif
+                                    @if( Auth::user()->avatar )
+                                    <img class="rounded-circle" width="50px" src="/storage/{{ Auth::user()->avatar }}" />
+                                    @endif
 
+                                </div>
                             </div>
-                        </div>
 
                         </div>
 

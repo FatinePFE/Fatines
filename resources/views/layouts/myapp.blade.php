@@ -53,7 +53,19 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @else
+                        <div class="flex-row justify-content-center ">
 
+                            <div class="profile-header-container">
+                                <div class="profile-header-img">
+
+                                    @if( Auth::user()->avatar )
+                                    <img class="rounded-circle" width="50px" src="/storage/{{ Auth::user()->avatar }}" />
+                                    @endif
+
+                                </div>
+                            </div>
+
+                        </div>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

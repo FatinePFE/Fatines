@@ -24,7 +24,7 @@ class OffresController extends Controller
     {
         $offres = Offre::with('city','shop','user')->paginate(25);
 
-        return view('offres.index', compact('offres'));
+        return view('welcome', compact('offres'));
     }
 
 

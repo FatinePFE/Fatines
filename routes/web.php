@@ -11,9 +11,15 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+
+*/
+
+Route::get('/', 'OffresController@index2')->name('welcome');
+
 
 Auth::routes();
 
