@@ -46,6 +46,7 @@
                             <th>Phone</th>
                             <th>City</th>
                             <th>Role</th>
+                            <th>Gender</th>
 
                             <th></th>
                         </tr>
@@ -58,6 +59,7 @@
                             <td>{{ $user->phone }}</td>
                             <td>{{ optional($user->city)->name }}</td>
                             <td>{{ $user->role }}</td>
+                            <td>{{ $user->gender }}</td>
 
                             <td>
 

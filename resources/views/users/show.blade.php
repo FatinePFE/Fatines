@@ -22,7 +22,7 @@
                     <a href="{{ route('users.user.create') }}" class="btn btn-success" title="Create New User">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     </a>
-                    
+
                     <a href="{{ route('users.user.edit', $user->id ) }}" class="btn btn-primary" title="Edit User">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
@@ -46,11 +46,13 @@
             <dt>Phone</dt>
             <dd>{{ $user->phone }}</dd>
             <dt>Avatar</dt>
-            <dd>{{ basename($user->avatar) }}</dd>
+            <dd>{{ asset('storage/' . $user->avatar) }}</dd>
             <dt>City</dt>
             <dd>{{ optional($user->city)->name }}</dd>
             <dt>Role</dt>
             <dd>{{ $user->role }}</dd>
+            <dt>Gender</dt>
+            <dd>{{ $user->gender }}</dd>
 
         </dl>
 

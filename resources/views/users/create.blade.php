@@ -34,7 +34,7 @@
                                         'user' => null,
                                       ])
 
-            <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
+                                      <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
                 <label for="role" class="col-md-2 control-label">Role</label>
                 <div class="col-md-10">
                     <select class="form-control" id="role" name="role">

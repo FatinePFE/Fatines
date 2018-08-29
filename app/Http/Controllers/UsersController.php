@@ -50,8 +50,8 @@ class UsersController extends Controller
             $data = $this->getData($request);
 
             if ($request->has('password')) {
-                 $data['password'] = bcrypt(request('password'));
-            }
+                $data['password'] = bcrypt(request('password'));
+           }
 
 
             User::create($data);
@@ -177,6 +177,7 @@ class UsersController extends Controller
             'avatar' => ['file','nullable'],
             'city_id' => 'nullable',
             'role' => 'nullable',
+            'gender' => 'nullable',
 
         ];
 
@@ -189,6 +190,8 @@ class UsersController extends Controller
         if ($request->hasFile('avatar')) {
             $data['avatar'] = $this->moveFile($request->file('avatar'));
         }
+
+
 
         return $data;
     }
@@ -208,6 +211,4 @@ class UsersController extends Controller
 
         return $file->store(config('codegenerator.files_upload_path'), config('filesystems.default'));
     }
-
-
 }

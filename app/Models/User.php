@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-
+    
 
     /**
      * The database table used by the model.
@@ -34,7 +34,8 @@ class User extends Model
                   'phone',
                   'avatar',
                   'city_id',
-                  'role'
+                  'role',
+                  'gender'
               ];
 
     /**
@@ -43,14 +44,14 @@ class User extends Model
      * @var array
      */
     protected $dates = [];
-
+    
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [];
-
+    
     /**
      * Get the city for this model.
      */

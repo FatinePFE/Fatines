@@ -50,7 +50,7 @@
                 </span>
 
                 <span class="input-group-addon custom-delete-file-name">
-                    {{ basename($user->avatar) }}
+                {{ basename($user->avatar) }}
                 </span>
             </div>
         @endif
@@ -75,4 +75,20 @@
 </div>
 
 
+<div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
+    <label for="gender" class="col-md-2 control-label">Gender</label>
+    <div class="col-md-10">
+        <select class="form-control" id="gender" name="gender">
+        	    <option value="" style="display: none;" {{ old('gender', optional($user)->gender ?: '') == '' ? 'selected' : '' }} disabled selected>Select gender</option>
+        	@foreach (['male' => 'Male',
+'female' => 'Female'] as $key => $text)
+			    <option value="{{ $key }}" {{ old('gender', optional($user)->gender) == $key ? 'selected' : '' }}>
+			    	{{ $text }}
+			    </option>
+			@endforeach
+        </select>
+
+        {!! $errors->first('gender', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
 
