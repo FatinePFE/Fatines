@@ -123,8 +123,12 @@ class UsersController extends Controller
 
             $user->update($data);
 
-            return redirect()->route('users.user.index')
+            $cities = City::pluck('name','id')->all();
+
+            return redirect()->route('users.user.edit', compact('user','cities'))
                              ->with('success_message', 'User was successfully updated!');
+
+            //return view('users.edit', compact('user','cities'))->with('success_message', 'User was successfully updated!');
 
         } catch (Exception $exception) {
 
@@ -204,4 +208,6 @@ class UsersController extends Controller
 
         return $file->store(config('codegenerator.files_upload_path'), config('filesystems.default'));
     }
+
+
 }

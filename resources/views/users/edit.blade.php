@@ -8,7 +8,9 @@
 
             <div class="pull-left">
                 <h4 class="mt-5 mb-5">{{ !empty($user->name) ? $user->name : 'User' }}</h4>
+
             </div>
+            <!--
             <div class="btn-group btn-group-sm pull-right" role="group">
 
                 <a href="{{ route('users.user.index') }}" class="btn btn-primary" title="Show All User">
@@ -20,6 +22,8 @@
                 </a>
 
             </div>
+
+            -->
         </div>
 
         <div class="panel-body">
@@ -32,6 +36,14 @@
                 </ul>
             @endif
 
+            @if(Session::has('success_message'))
+                <div class="alert alert-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {!! session('success_message') !!}
+                </div>
+            @endif
+
+
             <form method="POST" action="{{ route('users.user.update', $user->id) }}" id="edit_user_form" name="edit_user_form" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
@@ -43,7 +55,7 @@
             <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
                 <label for="role" class="col-md-2 control-label">Role</label>
                 <div class="col-md-10">
-                    <select class="form-control" id="role" name="role" disabled>
+                    <select class="form-control" id="role_disp" name="role" disabled>
                             <option value="" style="display: none;" {{ old('role', optional($user)->role ?: '') == '' ? 'selected' : '' }} disabled selected>Select role</option>
                         @foreach (['USER' => 'USER',
             'ADMIN' => 'ADMIN'] as $key => $text)
@@ -54,10 +66,12 @@
                     </select>
 
                     {!! $errors->first('role', '<p class="help-block">:message</p>') !!}
+
+                    <input class="form-control" name="role" type="hidden" id="role" value="{{ Auth::user()->role }}">
+                    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
                 </div>
 
-                <input class="form-control" name="role" type="hidden" id="role" value="{{ Auth::user()->role }}">
-                {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+
 
             </div>
 
