@@ -15,19 +15,6 @@ use Exception;
 class OffresController extends Controller
 {
 
-    /**
-     * Display a listing of the offres.
-     *
-     * @return Illuminate\View\View
-     */
-    public function index2()
-    {
-        $offres = Offre::with('city','shop','user')->paginate(25);
-
-        return view('welcome', compact('offres'));
-    }
-
-
         /**
      * Display a listing of the offres.
      *

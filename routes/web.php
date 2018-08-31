@@ -22,24 +22,14 @@ Route::get('/', function () {
 
 */
 
-Route::get('/', 'OffresController@index2')->name('welcome');
-
+Route::get('/', 'QueryController@index')->name('welcome');
+Route::post ( '/search','QueryController@search' )->name('search');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post ( '/search', function () {
-	$q = Input::get ( 'q' );
-	if($q != ""){
-		$offre = Offre::where ( 'name', 'LIKE', '%' . $q . '%' )->get ();
-		if (count ( $offre ) > 0)
-			return view ( 'welcome' )->withDetails ( $offre )->withQuery ( $q );
-		else
-			return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
-	}
-	return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
-} );
+
 
 #Route::get('/profile', 'UserController@edit')->name('users.user.edit');
 #Route::patch('/users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);

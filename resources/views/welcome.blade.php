@@ -6,19 +6,38 @@
 
         <form action="/search" method="POST" role="search">
 			{{ csrf_field() }}
-			<div class="input-group">
-				<input type="text" class="form-control" name="q"
-					placeholder="Search users"> <span class="input-group-btn">
+
+
+                <div class="form-group {{ $errors->has('shop_id') ? 'has-error' : '' }}">
+                    <label for="shop_id" class="col-md-2 control-label">Shop</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="shop_id" name="shop_id">
+                                <option value="" style="display: none;">Select shop</option>
+                            @foreach ($shops as $key => $shop)
+                                <option value="{{ $shop->id }}" >
+                                    {{ $shop->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                </div>
+
+                <span class="input-group-btn">
 					<button type="submit" class="btn btn-default">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				</span>
-			</div>
+
 		</form>
-		<div class="container">
+    </div>
+
+    <!-- /.container -->
+
+    <div class="container">
 			@if(isset($details))
-			<p> The Search results for your query <b> {{ $query }} </b> are :</p>
-			<h2>Sample User details</h2>
+
+			<h2>Result</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -39,15 +58,6 @@
 			<p>{{ $message }}</p>
 			@endif
 		</div>
-
-
-
-
-
-
-    </div>
-    <!-- /.container -->
-
 
 
 @endsection
